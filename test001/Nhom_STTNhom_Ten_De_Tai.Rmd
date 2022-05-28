@@ -1,0 +1,79 @@
+---
+title: "Proposal"
+author: "Hồng Tiến Hào"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Đề Xuất
+
+## ĐỀ TÀI: PHÂN LOẠI KHÁCH HÀNG - PHÂN TÍCH CÁC KHOẢN VAY ĐỦ TIÊU CHUẨN
+|STT|MSSV|Thành viên|
+|:-:|:-:|:-|
+|20|19133022 |**Hồng Tiến Hào**|
+|61|19133065 |**Nguyễn Thanh Tùng**|
+|1|17133012 |**Đỗ Lê Tiến Đạt**|
+|31|18133024 |**Ngô Phi Lít**|
+
+#### *Giáo viên hướng dẫn*: **Quách Đình Hoàng**
+
+## I - Giới thiệu
+- Tập dữ liệu đến từ công ty tài chính Dream Housing Finance, một công ty với có đủ các đối tượng khách hàng từ đô thị, nửa đô thị và vùng nông thôn. Các dữ liệu được công ty cung cấp nhằm muốn tự động hóa quy trình phân loại các trường hợp đủ điều kiện cho vay (thời gian thực) dựa trên chi tiết khách hàng được cung cấp trong khi điền vào mẫu đơn đăng ký trực tuyến.
+- Link tập dữ liệu nguồn [https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset](https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset)
+
+## II - Dữ liệu
+### 2.1. Chi Tiết Thuộc Tính
+|Attribute|Describtion|Type|
+|:-:|:-:|:-:|
+|**Loan_ID**|Unique Loan ID |Categorical|
+|**Gender**|Male/ Female |Categorical|
+|**Married**|Applicant married (Y/N) |Categorical|
+|**Dependents**|Number of dependents |discrete|
+|**Education**|Applicant Education (Graduate/ Under Graduate) |discrete variable|
+|**Self_Employed**|Self-employed (Y/N) |Categorical|
+|**ApplicantIncome**|Applicant income |Continuous|
+|**CoapplicantIncome**|Coapplicant income |Continuous|
+|**LoanAmount**|Loan amount in thousands |Continuous|
+|**Loan_Amount_Term**|Term of a loan in months |Continuous|
+|**Credit_History**|credit history meets guidelines |Categorical|
+|**Property_Area**|Urban/ Semi-Urban/ Rural |Categorical|
+|**Loan_Status**|Loan approved (Y/N) |Categorical|
+### 2.2. Dữ Liệu
+```{r load data, include=FALSE}
+train <- read.csv("./Data/loan-train.csv",encoding = "UTF-8")
+test <- read.csv("./Data/loan-test.csv",encoding = "UTF-8")
+```
+#### 2.2.1. Số Chiều
+Tập train
+```{r dimension train, echo=FALSE}
+dim(train)
+```
+Tập test
+```{r dimension test, echo=FALSE}
+dim(test)
+```
+
+#### 2.2.2. Vài Dòng Dữ Liệu
+```{r Rows}
+head(train,3)
+```
+## III - Kế hoạch phân tích dữ liệu
+### 3.1. Xác Định
+#### 3.1.1. Câu Hỏi Nghiên Cứu
+- Các yếu tố ảnh hưởng đến một khoản vay
+- Phân tích và phân loại khách hàng đủ điều kiện cho vay hay không
+#### 3.1.2. Các Thuộc Tính
+Sau khi, xác định câu hỏi nghiên cứu, thì biến phản hồi được xác định là `Loan_Status` (có cho khách hàng cho vay hay không) và biến dự đoán là các thuộc tính còn lại được liệt kê ở mục II
+### 3.2. Kế Hoạc Thực Hiện
+1. Tìm hiểu các vấn đề chuyên môn hẹp về các biến liên quan đến lĩnh vực ngân hàng
+2. Thực hiện xử lý dữ liệu (missing value, chuẩn hóa, ...)
+3. Trực quan hóa bằng biểu đồ
+4. Chuẩn bị Dữ liệu cho xây dựng mô hình
+5. Xây dựng mô hình bằng các thuật toán đã học (XGBoost, Bagging, decision tree, random forest,...)
+6. Đánh giá, so sánh thuật toán và tối ưu mô hình (sau khi tối ưu vẫn chưa tốt thực hiện lại bước 2)
+7. Dự đoán
+
+
